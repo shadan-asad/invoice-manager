@@ -1,27 +1,52 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import TextField from '@mui/material/TextField';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
-import Grid from '@mui/material/Grid'
 
 
 import '../App.css'
 
 export default function AddInvo({open, handleClose}) {
-  const [clearDate, setClearDate] = React.useState(null);
-  const [postingDate, setPostingDate] = React.useState(null);
-  const [documentCreateDate, setDocumentCreateDate] = React.useState(null);
-  const [dueDate, setDueDate] = React.useState(null);
-  const [baselineCreateDate, setBaselineCreateDate] = React.useState(null);
+  const [business_code, setbusiness_code] = React.useState('');
+  const [cust_number, setcust_number] = React.useState('');
+  const [buisness_year, setbuisness_year] = React.useState('');
+  const [doc_id, setdoc_id] = React.useState('');
+  const [invoice_currency, setinvoice_currency] = React.useState('');
+  const [document_type, setdocument_type] = React.useState('');
+  const [posting_id, setposting_id] = React.useState('');
+  const [total_open_amount, settotal_open_amount] = React.useState('');
+  const [cust_payment_terms, setcust_payment_terms] = React.useState('');
+  const [invoice_id, setinvoice_id] = React.useState('');
 
+  const [clear_date, setclear_date] = React.useState(null);
+  const [posting_date, setposting_date] = React.useState(null);
+  const [document_create_date, setdocument_create_date] = React.useState(null);
+  const [due_date, setdue_date] = React.useState(null);
+  const [baseline_create_date, setbaseline_create_date] = React.useState(null);
+
+  const postData = () => {
+    console.log(business_code);
+    console.log(cust_number);
+    console.log(buisness_year);
+    console.log(doc_id);
+    console.log(invoice_currency);
+    console.log(posting_id);
+    console.log(total_open_amount);
+    console.log(cust_payment_terms);
+    console.log(invoice_id);
+    console.log(clear_date);
+    console.log(document_create_date);
+    console.log(posting_date);
+    console.log(due_date);
+    console.log(baseline_create_date);
+    console.log(document_type);
+  }
   return (
     <div>
       <Dialog
@@ -42,19 +67,19 @@ export default function AddInvo({open, handleClose}) {
               '& > :not(style)': { m: 1, width: '25ch' },
             }}
             >
-            <TextField id="outlined-basic" label="Business Code" variant="outlined" />
-            <TextField id="outlined-basic" label="Customer Number" variant="outlined" type="number"/>
+            <TextField id="business_code" label="Business Code" variant="outlined" onChange={(e) => setbusiness_code(e.target.value)}/>
+            <TextField id="outlined-basic" label="Customer Number" variant="outlined" type="number" onChange={(e) => setcust_number(e.target.value)}/>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="Clear Date"
-                value={clearDate}
+                value={clear_date}
                 onChange={(newValue) => {
-                  setClearDate(newValue);
+                  setclear_date(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-            <TextField id="outlined-basic" label="Business Year" variant="outlined" type="number"/>
+            <TextField id="outlined-basic" label="Business Year" variant="outlined" type="number" onChange={(e) => setbuisness_year(e.target.value)}/>
           </Box>
           <Box
             component="form"
@@ -62,29 +87,29 @@ export default function AddInvo({open, handleClose}) {
               '& > :not(style)': { m: 1, width: '25ch' },
             }}
             >
-            <TextField id="outlined-basic" label="Document ID" variant="outlined" />
+            <TextField id="outlined-basic" label="Document ID" variant="outlined" onChange={(e) => setdoc_id(e.target.value)}/>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="Posting Date"
-                value={postingDate}
+                value={posting_date}
                 onChange={(newValue) => {
-                  setPostingDate(newValue);
+                  setposting_date(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
               <DatePicker
                 label="Document Create Date"
-                value={documentCreateDate}
+                value={document_create_date}
                 onChange={(newValue) => {
-                  setDocumentCreateDate(newValue);
+                  setdocument_create_date(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
               <DatePicker
                 label="Due Date"
-                value={dueDate}
+                value={due_date}
                 onChange={(newValue) => {
-                  setDueDate(newValue);
+                  setdue_date(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -96,10 +121,10 @@ export default function AddInvo({open, handleClose}) {
               '& > :not(style)': { m: 1, width: '25ch' },
             }}
             >
-            <TextField id="outlined-basic" label="Invoice Currency" variant="outlined" />
-            <TextField id="outlined-basic" label="Document Type" variant="outlined" />
-            <TextField id="outlined-basic" label="Posting ID" variant="outlined" type="number"/>
-            <TextField id="outlined-basic" label="Total Open Amount" variant="outlined" type="number"/>
+            <TextField id="outlined-basic" label="Invoice Currency" variant="outlined" onChange={(e) => setinvoice_currency(e.target.value)}/>
+            <TextField id="outlined-basic" label="Document Type" variant="outlined" onChange={(e) => setdocument_type(e.target.value)}/>
+            <TextField id="outlined-basic" label="Posting ID" variant="outlined" type="number" onChange={(e) => setposting_id(e.target.value)}/>
+            <TextField id="outlined-basic" label="Total Open Amount" variant="outlined" type="number" onChange={(e) => settotal_open_amount(e.target.value)}/>
           </Box>
           <Box
             component="form"
@@ -110,20 +135,20 @@ export default function AddInvo({open, handleClose}) {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="Baseline Create Date"
-                value={baselineCreateDate}
+                value={baseline_create_date}
                 onChange={(newValue) => {
-                  setBaselineCreateDate(newValue);
+                  setbaseline_create_date(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-            <TextField id="outlined-basic" label="Customer Payment Terms" variant="outlined" />
-            <TextField id="outlined-basic" label="Invoice ID" variant="outlined" type="number"/>
+            <TextField id="outlined-basic" label="Customer Payment Terms" variant="outlined" onChange={(e) => setcust_payment_terms(e.target.value)}/>
+            <TextField id="outlined-basic" label="Invoice ID" variant="outlined" type="number" onChange={(e) => setinvoice_id(e.target.value)}/>
           </Box>
         </DialogContent>
       </div>
       <div className='btnGrp'>
-        <Button className='addButton' variant="outlined" onClick={handleClose}>Add</Button>
+        <Button className='addButton' variant="outlined" onClick={postData}>Add</Button>
         <Button className='addButton' variant="outlined" onClick={handleClose}>Cancel</Button>    
       </div>
       </Dialog>
