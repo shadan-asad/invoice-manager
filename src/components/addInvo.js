@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
-
+import axios from 'axios';
 
 import '../App.css'
 
@@ -30,7 +30,7 @@ export default function AddInvo({open, handleClose}) {
   const [due_date, setdue_date] = React.useState(null);
   const [baseline_create_date, setbaseline_create_date] = React.useState(null);
 
-  const postData = () => {
+  const postData = async() => {
     console.log(business_code);
     console.log(cust_number);
     console.log(buisness_year);
@@ -46,6 +46,14 @@ export default function AddInvo({open, handleClose}) {
     console.log(due_date);
     console.log(baseline_create_date);
     console.log(document_type);
+
+    let data = "business_code=" + business_code + "&cust_number=" + cust_number + "&buisness_year=" + buisness_year + "&doc_id=" + doc_id
+               + "&invoice_currency=" + invoice_currency + "&posting_id=" + posting_id + "&total_open_amount=" + total_open_amount 
+               + "&cust_payment_terms=" + cust_payment_terms  + "&invoice_id=" + invoice_id  + "&clear_date=" + clear_date  
+               + "&document_create_date=" +  document_create_date + "&posting_date=" +  posting_date + "&due_date=" + due_date  
+               + "&baseline_create_date=" +  baseline_create_date + "&document_type=" + document_type;
+    let response = await axios.get('http://localhost:8080/highradius/insert?'+data);
+    console.log(response.data)
   }
   return (
     <div>
@@ -148,7 +156,7 @@ export default function AddInvo({open, handleClose}) {
         </DialogContent>
       </div>
       <div className='btnGrp'>
-        <Button className='addButton' variant="outlined" onClick={postData}>Add</Button>
+        <Button className='addButton' variant="outlined" onClick={postData} type='submit'>Add</Button>
         <Button className='addButton' variant="outlined" onClick={handleClose}>Cancel</Button>    
       </div>
       </Dialog>
