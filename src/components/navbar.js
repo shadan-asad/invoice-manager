@@ -18,7 +18,7 @@ export default function Navbar() {
 
     return (
         <div>
-            <AddInvo open={open} handleClose={handleClose }/>
+            <AddInvo open={open} handleClose={ handleClose }/>
             <div className='navbar'>
                 <ButtonGroup variant="outlined" aria-label="outlined button group">
                     <Button className='button'>Predict</Button>

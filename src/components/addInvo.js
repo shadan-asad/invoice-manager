@@ -30,22 +30,8 @@ export default function AddInvo({open, handleClose}) {
   const [due_date, setdue_date] = React.useState(null);
   const [baseline_create_date, setbaseline_create_date] = React.useState(null);
 
+  
   const postData = async() => {
-    console.log(business_code);
-    console.log(cust_number);
-    console.log(buisness_year);
-    console.log(doc_id);
-    console.log(invoice_currency);
-    console.log(posting_id);
-    console.log(total_open_amount);
-    console.log(cust_payment_terms);
-    console.log(invoice_id);
-    console.log(clear_date);
-    console.log(document_create_date);
-    console.log(posting_date);
-    console.log(due_date);
-    console.log(baseline_create_date);
-    console.log(document_type);
 
     let data = "business_code=" + business_code + "&cust_number=" + cust_number + "&buisness_year=" + buisness_year + "&doc_id=" + doc_id
                + "&invoice_currency=" + invoice_currency + "&posting_id=" + posting_id + "&total_open_amount=" + total_open_amount 
@@ -55,6 +41,7 @@ export default function AddInvo({open, handleClose}) {
     let response = await axios.get('http://localhost:8080/highradius/insert?'+data);
     console.log(response.data)
   }
+
   return (
     <div>
       <Dialog
@@ -156,8 +143,8 @@ export default function AddInvo({open, handleClose}) {
         </DialogContent>
       </div>
       <div className='btnGrp'>
-        <Button className='addButton' variant="outlined" onClick={postData} type='submit'>Add</Button>
-        <Button className='addButton' variant="outlined" onClick={handleClose}>Cancel</Button>    
+        <Button className='addButton' variant="outlined" onClick={() => { postData(); handleClose(); }} type='submit'>Add</Button>
+        <Button className='addButton' variant="outlined" onClick={ handleClose }>Cancel</Button>    
       </div>
       </Dialog>
     </div>
