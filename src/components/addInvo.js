@@ -52,7 +52,7 @@ export default function AddInvo({open, handleClose}) {
         maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Add Invoice"}
+          {"Add"}
         </DialogTitle>
       <div>
         <DialogContent>

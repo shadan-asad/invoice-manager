@@ -1,11 +1,8 @@
 import * as React from 'react';
 import '../App.css'
-import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
 import { getData } from '../services/data';
-import logo from '../images/highradius.png'
 import Navbar  from './navbar'
-import AddInvo from './addInvo';
 
 export default function MyGrid() {
   const[data, setData] = React.useState([]);
