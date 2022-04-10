@@ -1,8 +1,5 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
-import { Button, Grid } from '@mui/material';
-import { TextFormat } from '@mui/icons-material';
-import { color } from '@mui/system';
 import '../App.css';
 
 export default function Footer() {
