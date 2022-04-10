@@ -7,6 +7,7 @@ import Navbar  from './navbar'
 export default function MyGrid() {
   const[data, setData] = React.useState([]);
   const [checkboxSelection] = React.useState(true);
+  const [selectionModel, setSelectionModel] = React.useState([]);
 
   React.useEffect( async function() {
     setData(await getData());
@@ -25,9 +26,11 @@ export default function MyGrid() {
   return (
     
     <div style={{ width: '100%' }}>
-      <Navbar/>
+      <Navbar selectionModel={selectionModel}/>
       <div style={{ height: 570 }}>
-        <DataGrid checkboxSelection={checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} />
+        <DataGrid checkboxSelection={checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} 
+        onSelectionModelChange={(newSelectionModel) => { setSelectionModel(newSelectionModel); }}
+         />
       </div>
     </div>
   );

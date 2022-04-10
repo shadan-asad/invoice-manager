@@ -8,7 +8,7 @@ import EditInvo from './editInvo';
 import DeleteInvo from './deleteInvo';
 import AdvanceSearch from './advanceSearch';
 
-export default function Navbar() {
+export default function Navbar(selectionModel) {
 
     const [open, setOpen] = React.useState(false);
     const [openEdit, setEdit] = React.useState(false);
@@ -49,7 +49,7 @@ export default function Navbar() {
         <div>
             <AddInvo open={open} handleClose={ handleClose }/>
             <EditInvo openEdit={openEdit} editClose={ editClose }/>
-            <DeleteInvo openDelete={openDelete} deleteClose={ deleteClose }/>
+            <DeleteInvo openDelete={openDelete} deleteClose={ deleteClose } selectionModel={selectionModel}/>
             <AdvanceSearch advSearch={advSearch} advSearchClose={ advSearchClose }/>
             <div className='navbar'>
                 <ButtonGroup variant="outlined" aria-label="outlined button group">

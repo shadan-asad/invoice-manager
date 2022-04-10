@@ -2,22 +2,25 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import TextField from '@mui/material/TextField';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 
 import '../App.css'
 
-export default function DeleteInvo({openDelete, deleteClose}) {
-
-  const [sl_no, setinvoice_currency] = React.useState('');
-  
+export default function DeleteInvo({openDelete, deleteClose, selectionModel}) {
+    
   const deleteData = async() => {
 
-    let data = "sl_no=" + sl_no;
+    let delList = [];
+    for(let key in selectionModel) {
+      delList.push(selectionModel[key]);
+    }
+
+    let data = "sl_no="+delList[0];
+    
     let response = await axios.get('http://localhost:8080/highradius/delete?'+data);
-    console.log(response.data)
+    console.log("Is deleted: "+response.data);
   }
 
   return (

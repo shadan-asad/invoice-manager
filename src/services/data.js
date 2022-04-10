@@ -5,3 +5,10 @@ export const getData = async () => {
     let data = response.data;
     return data;
 }
+
+export const deleteData = async() => {
+
+    let data = "sl_no=" + 0;
+    let response = await axios.get('http://localhost:8080/highradius/delete?'+data);
+    console.log(response.data)
+  }
