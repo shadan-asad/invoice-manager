@@ -45,10 +45,17 @@ export default function Navbar(selectionModel) {
     const advSearchClose = () => {
         setAdvSearch(false);
     }
+
+    const checkSelectionModel = (selectionModel) => {
+        if(selectionModel.selectionModel.length == 1) {
+            return false;
+        }
+        return true;
+    }
     return (
         <div>
             <AddInvo open={open} handleClose={ handleClose }/>
-            <EditInvo openEdit={openEdit} editClose={ editClose }/>
+            <EditInvo openEdit={openEdit} editClose={ editClose } selectionModel={selectionModel}/>
             <DeleteInvo openDelete={openDelete} deleteClose={ deleteClose } selectionModel={selectionModel}/>
             <AdvanceSearch advSearch={advSearch} advSearchClose={ advSearchClose }/>
             <div className='navbar'>
@@ -62,7 +69,7 @@ export default function Navbar(selectionModel) {
                 </ButtonGroup>   
                 <ButtonGroup className='bg2' variant="outlined" aria-label="outlined button group">
                     <Button className='button' onClick={addHandler}>Add</Button>
-                    <Button className='button' onClick={editHandler} disabled='true'>Edit</Button>
+                    <Button className='button' onClick={editHandler} disabled={checkSelectionModel(selectionModel)}>Edit</Button>
                     <Button className='button' onClick={deleteHandler}>Delete</Button>
                 </ButtonGroup>
             </div>
