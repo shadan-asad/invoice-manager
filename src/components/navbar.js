@@ -55,7 +55,7 @@ export default function Navbar(selectionModel) {
     return (
         <div>
             <AddInvo open={open} handleClose={ handleClose }/>
-            <EditInvo openEdit={openEdit} editClose={ editClose } selectionModel={selectionModel}/>
+            <EditInvo openEdit={openEdit} editClose={ editClose } selectionModel={selectionModel} invo_curr={selectionModel.invo_curr} cust_pt={selectionModel.cust_pt} />
             <DeleteInvo openDelete={openDelete} deleteClose={ deleteClose } selectionModel={selectionModel}/>
             <AdvanceSearch advSearch={advSearch} advSearchClose={ advSearchClose }/>
             <div className='navbar'>

@@ -9,16 +9,17 @@ import axios from 'axios';
 
 import '../App.css'
 
-export default function EditInvo({openEdit, editClose}) {
+export default function EditInvo({openEdit, editClose, selectionModel, invo_curr, cust_pt}) {
 
+  let newinvo = invo_curr;
   const [invoice_currency, setinvoice_currency] = React.useState('');
   const [cust_payment_terms, setcust_payment_terms] = React.useState('');
   
   const editData = async() => {
 
-    let data = "invoice_currency=" + invoice_currency + "&cust_payment_terms=" + cust_payment_terms;
+    let sl_no = selectionModel.selectionModel[0];
+    let data = "sl_no=" +sl_no + "&invoice_currency=" + invoice_currency + "&cust_payment_terms=" + cust_payment_terms;
     let response = await axios.get('http://localhost:8080/highradius/edit?'+data);
-    console.log(response.data)
   }
 
   return (
@@ -41,8 +42,8 @@ export default function EditInvo({openEdit, editClose}) {
               '& > :not(style)': { m: 1, width: '25ch' },
             }}
             >
-            <TextField id="outlined-basic" label="Invoice Currency" variant="outlined" onChange={(e) => setinvoice_currency(e.target.value)}/>
-            <TextField id="outlined-basic" label="Customer Payment Terms" variant="outlined" onChange={(e) => setcust_payment_terms(e.target.value)}/>
+            <TextField  id="outlined-basic" defaultValue={invo_curr} label="Invoice Currency" variant="outlined" onChange={(e) => setinvoice_currency(e.target.value)}/>
+            <TextField  id="outlined-basic" defaultValue={cust_pt} label="Customer Payment Terms" variant="outlined" onChange={(e) => setcust_payment_terms(e.target.value)}/>
           </Box>
         </DialogContent>
       </div>

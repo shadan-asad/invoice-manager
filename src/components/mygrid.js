@@ -5,10 +5,21 @@ import { getData } from '../services/data';
 import Navbar  from './navbar'
 
 export default function MyGrid() {
+  
   const[data, setData] = React.useState([]);
   const [checkboxSelection] = React.useState(true);
   const [selectionModel, setSelectionModel] = React.useState([]);
+  const [invo_curr, setinvo_curr] = React.useState('');
+  const [cust_pt, setcust_pt] = React.useState('');
+   
+  const updateEditValues = async(newSelectionModel) => {
 
+    if(newSelectionModel.length == 1) {
+      setinvo_curr(data[newSelectionModel-1].invoice_currency);
+      setcust_pt(data[newSelectionModel-1].cust_payment_terms);
+    } 
+  
+  }
   React.useEffect( async function() {
     setData(await getData());
   }, []);
@@ -26,10 +37,10 @@ export default function MyGrid() {
   return (
     
     <div style={{ width: '100%' }}>
-      <Navbar selectionModel={selectionModel}/>
+      <Navbar selectionModel={selectionModel} invo_curr={invo_curr} cust_pt={cust_pt} />
       <div style={{ height: 570 }}>
         <DataGrid checkboxSelection={checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} 
-        onSelectionModelChange={(newSelectionModel) => { setSelectionModel(newSelectionModel); }}
+        onSelectionModelChange={(newSelectionModel) => { setSelectionModel(newSelectionModel); updateEditValues(newSelectionModel); }}
          />
       </div>
     </div>
