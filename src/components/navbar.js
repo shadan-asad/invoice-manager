@@ -65,7 +65,7 @@ export default function Navbar(selectionModel) {
                     <Button style={{color: "white"}} className='button' onClick={advSearchHandler}>Advance Search</Button>
                 </ButtonGroup>
                 <ButtonGroup style={{ backgroundColor: "white"}} className='search' variant="outlined" aria-label="outlined button group">
-                    <TextField className='search' id="outlined-basic" label="Search Customer ID" variant="outlined" size='small'></TextField>
+                    <TextField className='search' id="outlined-basic" label="Search Customer ID" variant="outlined" type="search" size='small'></TextField>
                 </ButtonGroup>   
                 <ButtonGroup className='bg2' variant="outlined" aria-label="outlined button group">
                     <Button style={{color: "white"}} className='button' onClick={addHandler}>Add</Button>

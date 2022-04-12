@@ -42,7 +42,7 @@ export default function MyGrid() {
       </div>
         <div style={{ height: 500, color: "white"}}>
         <DataGrid style={{color: "white"}}
-          rowHeight={37.8}
+          rowHeight={37.8} 
           pageSize={pageSize} 
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           rowsPerPageOptions={[10,25, 50, 100]}
