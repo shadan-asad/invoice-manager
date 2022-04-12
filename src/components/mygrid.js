@@ -5,7 +5,7 @@ import { getData } from '../services/data';
 import Navbar  from './navbar'
 
 export default function MyGrid() {
-  
+  const [pageSize, setPageSize] = React.useState(10);
   const[data, setData] = React.useState([]);
   const [checkboxSelection] = React.useState(true);
   const [selectionModel, setSelectionModel] = React.useState([]);
@@ -24,7 +24,7 @@ export default function MyGrid() {
     setData(await getData());
   }, []);
   
-  const cols = [ { field: 'sl_no', headerName: 'Sl No' }, { field: 'business_code', headerName: 'Business Code'}, 
+  const cols = [ { field: 'sl_no', headerName: 'Sl No' }, { field: 'business_code', headerName: 'Business \nCode'}, 
                  { field: 'cust_number', headerName: 'Customer Number'}, { field: 'clear_date', headerName: 'Clear Date'}, 
                  { field: 'buisness_year', headerName: 'Business Year'}, { field: 'doc_id', headerName: 'Document ID'}, 
                  { field: 'posting_date', headerName: 'Posting Date'}, { field: 'document_create_date', headerName: 'Document Create Date'}, 
@@ -36,13 +36,21 @@ export default function MyGrid() {
   
   return (
     
-    <div style={{ width: '100%' }}>
-      <Navbar selectionModel={selectionModel} invo_curr={invo_curr} cust_pt={cust_pt} />
-      <div style={{ height: 570 }}>
-        <DataGrid checkboxSelection={checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} 
-        onSelectionModelChange={(newSelectionModel) => { setSelectionModel(newSelectionModel); updateEditValues(newSelectionModel); }}
-         />
+    <div>
+      <div style={{color: "white"}}>
+        <Navbar selectionModel={selectionModel} invo_curr={invo_curr} cust_pt={cust_pt} />
       </div>
+        <div style={{ height: 500, color: "white"}}>
+        <DataGrid style={{color: "white"}}
+          rowHeight={37.8}
+          pageSize={pageSize} 
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          rowsPerPageOptions={[10,25, 50, 100]}
+          pagination
+          checkboxSelection={checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} 
+          onSelectionModelChange={(newSelectionModel) => { setSelectionModel(newSelectionModel); updateEditValues(newSelectionModel); }}
+         ></DataGrid>
+         </div>
     </div>
   );
 }

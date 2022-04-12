@@ -60,17 +60,17 @@ export default function Navbar(selectionModel) {
             <AdvanceSearch advSearch={advSearch} advSearchClose={ advSearchClose }/>
             <div className='navbar'>
                 <ButtonGroup variant="outlined" aria-label="outlined button group">
-                    <Button className='button' variant='contained'>Predict</Button>
-                    <Button className='button'>Analytics View</Button>
-                    <Button className='button' onClick={advSearchHandler}>Advance Search</Button>
+                    <Button style={{color: "white"}} className='button' variant='contained'>Predict</Button>
+                    <Button style={{color: "white"}} className='button'>Analytics View</Button>
+                    <Button style={{color: "white"}} className='button' onClick={advSearchHandler}>Advance Search</Button>
                 </ButtonGroup>
-                <ButtonGroup className='search' variant="outlined" aria-label="outlined button group">
+                <ButtonGroup style={{ backgroundColor: "white"}} className='search' variant="outlined" aria-label="outlined button group">
                     <TextField className='search' id="outlined-basic" label="Search Customer ID" variant="outlined" size='small'></TextField>
                 </ButtonGroup>   
                 <ButtonGroup className='bg2' variant="outlined" aria-label="outlined button group">
-                    <Button className='button' onClick={addHandler}>Add</Button>
-                    <Button className='button' onClick={editHandler} disabled={checkSelectionModel(selectionModel)}>Edit</Button>
-                    <Button className='button' onClick={deleteHandler}>Delete</Button>
+                    <Button style={{color: "white"}} className='button' onClick={addHandler}>Add</Button>
+                    <Button style={{color: "white"}} className='button' onClick={editHandler} disabled={checkSelectionModel(selectionModel)}>Edit</Button>
+                    <Button style={{color: "white"}} className='button' onClick={deleteHandler}>Delete</Button>
                 </ButtonGroup>
             </div>
         </div>

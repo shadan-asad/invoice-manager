@@ -5,7 +5,7 @@ import '../App.css';
 export default function Footer() {
   return (
     <div className='footer'>
-    <p style={{color: "black", justifyContent: "center", alignContent: "center"}}> <Link>Privacy Policy</Link> | 2022 HighRadius Corporation. All rights reserved. </p>
+    <p> <Link>Privacy Policy</Link> | 2022 HighRadius Corporation. All rights reserved. </p>
     
     </div>
   );
