@@ -6,7 +6,7 @@ import Navbar  from './navbar'
 
 export default function MyGrid() {
   const [pageSize, setPageSize] = React.useState(10);
-  const[data, setData] = React.useState([]);
+  const [data, setData] = React.useState([]);
   const [checkboxSelection] = React.useState(true);
   const [selectionModel, setSelectionModel] = React.useState([]);
   const [invo_curr, setinvo_curr] = React.useState('');
@@ -38,18 +38,25 @@ export default function MyGrid() {
     
     <div>
       <div style={{color: "white"}}>
-        <Navbar selectionModel={selectionModel} invo_curr={invo_curr} cust_pt={cust_pt} />
+        <Navbar 
+          selectionModel = {selectionModel} 
+          invo_curr = {invo_curr} 
+          cust_pt = {cust_pt} 
+          data = {data}
+          setData = {setData}
+          />
       </div>
         <div style={{ height: 500, color: "white"}}>
-        <DataGrid style={{color: "white"}}
-          rowHeight={37.8} 
-          pageSize={pageSize} 
-          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-          rowsPerPageOptions={[10,25, 50, 100]}
-          pagination
-          checkboxSelection={checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} 
-          onSelectionModelChange={(newSelectionModel) => { setSelectionModel(newSelectionModel); updateEditValues(newSelectionModel); }}
-         ></DataGrid>
+          <DataGrid 
+            style = {{color: "white"}}
+            rowHeight = {37.8} 
+            pageSize = {pageSize} 
+            onPageSizeChange = {(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions = {[10,25, 50, 100]}
+            pagination
+            checkboxSelection = {checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} 
+            onSelectionModelChange = {(newSelectionModel) => { setSelectionModel(newSelectionModel); updateEditValues(newSelectionModel); }}
+          ></DataGrid>
          </div>
     </div>
   );

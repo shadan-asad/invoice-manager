@@ -62,7 +62,7 @@ export default function AddInvo({open, handleClose}) {
               '& > :not(style)': { m: 1, width: '25ch' },
             }}
             >
-            <TextField id="business_code" label="Business Code" variant="outlined" onChange={(e) => setbusiness_code(e.target.value)}/>
+            <TextField id="business_code" required label="Business Code" variant="outlined" onChange={(e) => setbusiness_code(e.target.value)}/>
             <TextField id="outlined-basic" label="Customer Number" variant="outlined" type="number" onChange={(e) => setcust_number(e.target.value)}/>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker

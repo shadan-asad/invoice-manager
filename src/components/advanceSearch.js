@@ -18,9 +18,11 @@ export default function AdvanceSearch({advSearch, advSearchClose}) {
   
   const searchData = async() => {
 
-    let data = "invoice_currency=" + invoice_currency + "&cust_payment_terms=" + cust_payment_terms;
-    let response = await axios.get('http://localhost:8080/highradius/edit?'+data);
-    console.log(response.data)
+    let data = "doc_id=" + doc_id + "&invoice_id=" + invoice_id + "&cust_number=" + cust_number + "&buisness_year=" + buisness_year;
+    let response = await axios.get('http://localhost:8080/highradius/search?'+data);
+    console.log(data)
+    console.log(response.data);
+    setData(response.data);
   }
 
   return (

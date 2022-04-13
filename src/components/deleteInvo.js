@@ -11,16 +11,18 @@ import '../App.css'
 export default function DeleteInvo({openDelete, deleteClose, selectionModel}) {
     
   const deleteData = async() => {
-
-    let delList = [];
-    for(let key in selectionModel) {
-      delList.push(selectionModel[key]);
-    }
-
-    let data = "sl_no="+delList[0];
     
-    let response = await axios.get('http://localhost:8080/highradius/delete?'+data);
-    console.log("Is deleted: "+response.data);
+    if(selectionModel.selectionModel.length > 0) {
+      let delList = [];
+      for(let key in selectionModel) {
+        delList.push(selectionModel[key]);
+      }
+
+      let data = "sl_no="+delList[0];
+      
+      let response = await axios.get('http://localhost:8080/highradius/delete?'+data);
+      console.log("Is deleted: "+response.data);
+    }
   }
 
   return (
