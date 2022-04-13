@@ -6,10 +6,9 @@ import TextField from '@mui/material/TextField';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import axios from 'axios';
-
 import '../App.css'
 
-export default function AdvanceSearch({advSearch, advSearchClose}) {
+export default function AdvanceSearch({advSearch, advSearchClose, selectionModel}) {
 
   const [doc_id, setdoc_id] = React.useState('');
   const [invoice_id, setinvoice_id] = React.useState('');
@@ -20,9 +19,7 @@ export default function AdvanceSearch({advSearch, advSearchClose}) {
 
     let data = "doc_id=" + doc_id + "&invoice_id=" + invoice_id + "&cust_number=" + cust_number + "&buisness_year=" + buisness_year;
     let response = await axios.get('http://localhost:8080/highradius/search?'+data);
-    console.log(data)
-    console.log(response.data);
-    setData(response.data);
+    selectionModel.setData(response.data);
   }
 
   return (

@@ -4,14 +4,15 @@ import { DataGrid } from '@mui/x-data-grid';
 import { getData } from '../services/data';
 import Navbar  from './navbar'
 
-export default function MyGrid() {
+export default function MyGrid(hel) {
+  
   const [pageSize, setPageSize] = React.useState(10);
   const [data, setData] = React.useState([]);
   const [checkboxSelection] = React.useState(true);
   const [selectionModel, setSelectionModel] = React.useState([]);
   const [invo_curr, setinvo_curr] = React.useState('');
   const [cust_pt, setcust_pt] = React.useState('');
-   
+  
   const updateEditValues = async(newSelectionModel) => {
 
     if(newSelectionModel.length == 1) {

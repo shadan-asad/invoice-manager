@@ -9,7 +9,6 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import axios from 'axios';
-
 import '../App.css'
 
 export default function AddInvo({open, handleClose}) {

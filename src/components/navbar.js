@@ -60,7 +60,7 @@ export default function Navbar(selectionModel) {
             <AddInvo open={open} handleClose={ handleClose }/>
             <EditInvo openEdit={openEdit} editClose={ editClose } selectionModel={selectionModel} invo_curr={selectionModel.invo_curr} cust_pt={selectionModel.cust_pt} />
             <DeleteInvo openDelete={openDelete} deleteClose={ deleteClose } selectionModel={selectionModel}/>
-            <AdvanceSearch advSearch={advSearch} advSearchClose={ advSearchClose } />
+            <AdvanceSearch advSearch={advSearch} advSearchClose={ advSearchClose } selectionModel={selectionModel}/>
             <div className='navbar'>
                 <ButtonGroup variant="outlined" aria-label="outlined button group">
                     <Button style={{color: "white"}} className='button' variant='contained'>Predict</Button>

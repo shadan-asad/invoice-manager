@@ -11,7 +11,6 @@ import '../App.css'
 
 export default function EditInvo({openEdit, editClose, selectionModel, invo_curr, cust_pt}) {
 
-  let newinvo = invo_curr;
   const [invoice_currency, setinvoice_currency] = React.useState('');
   const [cust_payment_terms, setcust_payment_terms] = React.useState('');
   
