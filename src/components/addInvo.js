@@ -31,14 +31,22 @@ export default function AddInvo({open, handleClose}) {
 
   
   const postData = async() => {
+    if(business_code == "" || cust_number == "" || buisness_year == "" || doc_id == "" || invoice_currency == "" || 
+       document_type == "" || posting_id == "" || total_open_amount == "" || cust_payment_terms == "" || invoice_id == "" || 
+       clear_date == null || posting_date == null || document_create_date == null || due_date == null || baseline_create_date == null) {
 
-    let data = "business_code=" + business_code + "&cust_number=" + cust_number + "&buisness_year=" + buisness_year + "&doc_id=" + doc_id
-               + "&invoice_currency=" + invoice_currency + "&posting_id=" + posting_id + "&total_open_amount=" + total_open_amount 
-               + "&cust_payment_terms=" + cust_payment_terms  + "&invoice_id=" + invoice_id  + "&clear_date=" + clear_date  
-               + "&document_create_date=" +  document_create_date + "&posting_date=" +  posting_date + "&due_date=" + due_date  
-               + "&baseline_create_date=" +  baseline_create_date + "&document_type=" + document_type;
-    let response = await axios.get('http://localhost:8080/highradius/insert?'+data);
-    console.log(response.data)
+       console.log("empty values");
+    }else {
+
+      let data = "business_code=" + business_code + "&cust_number=" + cust_number + "&buisness_year=" + buisness_year + "&doc_id=" + doc_id
+                + "&invoice_currency=" + invoice_currency + "&posting_id=" + posting_id + "&total_open_amount=" + total_open_amount 
+                + "&cust_payment_terms=" + cust_payment_terms  + "&invoice_id=" + invoice_id  + "&clear_date=" + clear_date  
+                + "&document_create_date=" +  document_create_date + "&posting_date=" +  posting_date + "&due_date=" + due_date  
+                + "&baseline_create_date=" +  baseline_create_date + "&document_type=" + document_type;
+      let response = await axios.get('http://localhost:8080/highradius/insert?'+data);
+      console.log(response.data);
+      handleClose();
+    }
   }
 
   return (
@@ -142,7 +150,7 @@ export default function AddInvo({open, handleClose}) {
         </DialogContent>
       </div>
       <div className='btnGrp'>
-        <Button className='addButton' variant="outlined" onClick={() => { postData(); handleClose(); }} type='submit'>Add</Button>
+        <Button className='addButton' variant="outlined" onClick={() => { postData(); }} type='submit'>Add</Button>
         <Button className='addButton' variant="outlined" onClick={ handleClose }>Cancel</Button>    
       </div>
       </Dialog>
