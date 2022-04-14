@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { getData } from '../services/data';
 import Navbar  from './navbar'
 
-export default function MyGrid(hel) {
+export default function MyGrid() {
   
   const [pageSize, setPageSize] = React.useState(10);
   const [data, setData] = React.useState([]);
@@ -21,6 +21,8 @@ export default function MyGrid(hel) {
     } 
   
   }
+
+
   React.useEffect( async function() {
     setData(await getData());
   }, []);
@@ -56,7 +58,10 @@ export default function MyGrid(hel) {
             rowsPerPageOptions = {[10,25, 50, 100]}
             pagination
             checkboxSelection = {checkboxSelection} columns = {cols} rows = {data} getRowId = {(row) => row.sl_no} 
-            onSelectionModelChange = {(newSelectionModel) => { setSelectionModel(newSelectionModel); updateEditValues(newSelectionModel); }}
+            onSelectionModelChange = {(newSelectionModel) => {
+                                       setSelectionModel(newSelectionModel); 
+                                       updateEditValues(newSelectionModel); 
+                                       }}
           ></DataGrid>
          </div>
     </div>
