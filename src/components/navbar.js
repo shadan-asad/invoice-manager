@@ -8,8 +8,9 @@ import EditInvo from './editInvo';
 import DeleteInvo from './deleteInvo';
 import AdvanceSearch from './advanceSearch';
 import axios from 'axios';
+import { getData } from '../services/data'
 
-export default function Navbar(selectionModel, invo_curr, cust_pt, docu_id) {
+export default function Navbar(selectionModel, invo_curr, cust_pt, docu_id, data, setData) {
 
     const [open, setOpen] = React.useState(false);
     const [openEdit, setEdit] = React.useState(false);
@@ -65,20 +66,32 @@ export default function Navbar(selectionModel, invo_curr, cust_pt, docu_id) {
             }
         });
     
-        let response = await axios.post("http://127.0.0.1:5000/get_prediction", {data: docArr}, {
-            type: "application/json",
-        });
-        console.log(response[0])
-        let mydata = response[0]
+        if(docArr.length > 0) {
+            let response = await axios.post("http://127.0.0.1:5000/get_prediction", {data: docArr}, {
+                type: "application/json",
+            });
+            console.log(response[0])
+            let mydata = response[0]
 
-        let str = '';
-        for(let key in mydata) {
-            str += key + "=" + mydata[key] + "&"
+            let str = '';
+            for(let key in mydata) {
+                str += key + "=" + mydata[key] + "&"
+            }
+            str = str.substring(0, str.length - 1);
+            let docUpdate = await axios.post("http://localhost:8080/highradius/updateAgingBucket?"+str);
+            console.log("java resp: "+docUpdate);
         }
-        str = str.substring(0, str.length - 1);
-        let docUpdate = await axios.post("http://localhost:8080/highradius/updateAgingBucket?"+str);
-        console.log("java resp: "+docUpdate);
+    }
 
+    const filterHandler = async(e) => {
+        let tdata = await getData()
+        let newdata = selectionModel.data.filter(element => (e.target.value == element.cust_number));
+       
+        if(newdata.length > 0) {
+            selectionModel.setData(newdata);
+        }else if(newdata.length == 0){
+            selectionModel.setData(tdata);
+        }
     }
 
     return (
@@ -94,7 +107,9 @@ export default function Navbar(selectionModel, invo_curr, cust_pt, docu_id) {
                     <Button style={{color: "white"}} className='button' onClick={advSearchHandler}>Advance Search</Button>
                 </ButtonGroup>
                 <ButtonGroup style={{ backgroundColor: "white"}} className='search' variant="outlined" aria-label="outlined button group">
-                    <TextField className='search' id="outlined-basic" label="Search Customer ID" variant="outlined" type="search" size='small'></TextField>
+                    <TextField className='search' label="Search Customer ID" variant="outlined" type="search" size='small'
+                                onChange={(e) => {filterHandler(e)}}>
+                    </TextField>
                 </ButtonGroup>   
                 <ButtonGroup className='bg2' variant="outlined" aria-label="outlined button group">
                     <Button style={{color: "white"}} className='button' onClick={addHandler}>Add</Button>
