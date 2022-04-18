@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 
 import '../App.css'
+import { getData } from '../services/data';
 
 export default function DeleteInvo({openDelete, deleteClose, selectionModel}) {
     
@@ -22,6 +23,10 @@ export default function DeleteInvo({openDelete, deleteClose, selectionModel}) {
       
       let response = await axios.get('http://localhost:8080/highradius/delete?'+data);
       console.log("Is deleted: "+response.data);
+
+      if(response.data == true) {
+        selectionModel.setData(await getData())
+      }
     }
   }
 

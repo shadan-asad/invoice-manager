@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 
 import '../App.css'
+import { getData } from '../services/data';
 
 export default function EditInvo({openEdit, editClose, selectionModel, invo_curr, cust_pt}) {
 
@@ -19,6 +20,11 @@ export default function EditInvo({openEdit, editClose, selectionModel, invo_curr
     let sl_no = selectionModel.selectionModel[0];
     let data = "sl_no=" +sl_no + "&invoice_currency=" + invoice_currency + "&cust_payment_terms=" + cust_payment_terms;
     let response = await axios.get('http://localhost:8080/highradius/edit?'+data);
+    console.log("edited ? : "+response.data)
+
+    if(response.data == true) {
+      selectionModel.setData(await getData())
+    }
   }
 
   return (
