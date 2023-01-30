@@ -1,3 +1,12 @@
+# It is a B2B Invoice Management web application.
+## This app is useful for Account Receivables department.
+(Accounts Receivable represents money owed by entities to the firm on the
+sale of products or services on credit. In most business entities, accounts
+receivable is typically executed by generating an invoice and either mailing
+or electronically delivering it to the customer, who, in turn, must pay it within
+an established timeframe, called credit terms or payment terms.)
+### Backend: https://github.com/shadan-asad/invoice-manager-backend
+
 
 ![Screenshot from 2022-07-29 15-41-36](https://user-images.githubusercontent.com/55396429/198814164-72f3cd22-e66a-46f8-9b8b-de3f4ca065b8.png)
 
